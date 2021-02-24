@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
 import { Router } from 'express';
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
 
 export * from './controller';
 
@@ -251,6 +250,8 @@ export class KJSRouter {
     //     }
     //   })
     // );
+    const swaggerDocument = require(this.getSwaggerFile());
+
     this._router.use(
       url,
       swaggerUi.serve,
