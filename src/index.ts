@@ -231,8 +231,8 @@ export class KJSRouter {
   public setSwaggerFile(fileName: string): void {
     this._swaggerFileName = this._swagger.basePath + '/' + fileName;
     this._router.get(this._swaggerFileName, (req, res, next) => {
-      // ctx.body = JSON.stringify(this._swagger);
-      res.send(JSON.stringify(this._swagger));
+      req.body = JSON.stringify(this._swagger);
+      // res.send(JSON.stringify(this._swagger));
     });
   }
 
