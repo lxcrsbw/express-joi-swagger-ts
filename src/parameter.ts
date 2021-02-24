@@ -112,8 +112,10 @@ export const parameter = (
         );
       }
       ctx.params = value.params;
-      ctx.body =
-        (ctx.is(['multipart/form-data']) && value.formData) || value.body;
+      // ctx.body = (ctx.is(['multipart/form-data']) && value.formData) || value.body;
+      res.send(
+        (ctx.is(['multipart/form-data']) && value.formData) || value.body
+      );
       ctx.query = value.query;
       return await next();
     }

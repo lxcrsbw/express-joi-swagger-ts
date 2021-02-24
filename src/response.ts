@@ -49,15 +49,20 @@ export const response = (
           RESPONSES.get(target.constructor).get(key).get(ctx.statusCode)
         );
         if (error) {
-          ctx.body = {
+          // ctx.body = {
+          // code: HTTPStatusCodes.internalServerError,
+          // message: error.message
+          // };
+          res.send({
             code: HTTPStatusCodes.internalServerError,
             message: error.message
-          };
+          });
           // res.status = HTTPStatusCodes.internalServerError;
           res.status(_.toNumber(HTTPStatusCodes.internalServerError)).end();
           return;
         }
-        ctx.body = value;
+        // ctx.body = value;
+        res.send(value);
       }
     }
   );

@@ -76,7 +76,7 @@ export const DEFAULT_SWAGGER: ISwagger = {
   definitions: {},
   host: 'localhost:3002',
   info: {
-    title: 'Koa-Joi-Swagger-TS server',
+    title: 'Express-Joi-Swagger-TS server',
     version: '1.0.0'
   },
   paths: {},
@@ -230,8 +230,9 @@ export class KJSRouter {
 
   public setSwaggerFile(fileName: string): void {
     this._swaggerFileName = this._swagger.basePath + '/' + fileName;
-    this._router.get(this._swaggerFileName, (ctx, next) => {
-      ctx.body = JSON.stringify(this._swagger);
+    this._router.get(this._swaggerFileName, (req, res, next) => {
+      // ctx.body = JSON.stringify(this._swagger);
+      res.send(JSON.stringify(this._swagger));
     });
   }
 
