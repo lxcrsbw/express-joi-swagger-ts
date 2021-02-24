@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { Router } from 'express';
-const swaggerUi = require('swagger-ui-express');
+const koaSwagger = require('koa2-swagger-ui');
 
 export * from './controller';
 
@@ -241,26 +241,25 @@ export class KJSRouter {
   }
 
   public loadSwaggerUI(url: string): void {
-    // this._router.get(
-    //   url,
-    //   swaggerUi({
-    //     routePrefix: false,
-    //     swaggerOptions: {
-    //       url: this._swaggerFileName
-    //     }
-    //   })
-    // );
-    const swaggerDocument = require(this.getSwaggerFile());
-
-    this._router.use(
+    this._router.get(
       url,
-      swaggerUi.serve,
-      swaggerUi.setup(swaggerDocument, {
+      koaSwagger({
+        routePrefix: false,
         swaggerOptions: {
           url: this._swaggerFileName
         }
       })
     );
+    // const swaggerDocument = require(this.getSwaggerFile());
+    // this._router.use(
+    //   url,
+    //   swaggerUi.serve,
+    //   swaggerUi.setup(swaggerDocument, {
+    //     swaggerOptions: {
+    //       url: this._swaggerFileName
+    //     }
+    //   })
+    // );
   }
 
   public getRouter(): Router {
