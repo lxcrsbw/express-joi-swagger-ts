@@ -1,0 +1,48 @@
+{
+  "name": "express-joi-swagger-ts",
+  "version": "1.0.0",
+  "description": "Router with express, joi and swagger on typescript",
+  "keywords": [
+    "express",
+    "joi",
+    "swagger",
+    "typescript",
+    "router"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "tsc --declaration",
+    "test": "jest --ci --coverage --no-cache",
+    "prepare": "npm run build",
+    "del": "rimraf node_modules dist yarn.lock"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lxcrsbw/koa-joi-swagger-ts.git"
+  },
+  "author": "lxsbw",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.1",
+    "joi": "^14.3.1",
+    "joi-to-swagger": "^3.2.0",
+    "lodash": "^4.17.14",
+    "swagger-ui-express": "^4.1.6",
+    "tslint-consistent-codestyle": "^1.15.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.9",
+    "@types/jest": "^24.0.15",
+    "@types/joi": "^14.3.3",
+    "@types/lodash": "^4.14.136",
+    "jest": "^24.8.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  }
+}
