@@ -1,8 +1,8 @@
-## Koa-Joi-Swagger-TS
+## Express-Joi-Swagger-TS
 
 ### How to use
 
-    npm install @lxsbw/koa-joi-swagger-ts --save
+    npm install express-joi-swagger-ts --save
 
 ## Documentation
 
@@ -46,7 +46,7 @@ Parameters:
 
 ##### Example of using @safe() resolver
 
-    import {safe, parameter, del, controller, ENUM_PARAM_IN} from "koa-joi-swagger-ts";
+    import {safe, parameter, del, controller, ENUM_PARAM_IN} from "express-joi-swagger-ts";
 
     // ...somecodehere...
 
@@ -70,7 +70,7 @@ Parameters:
 
 ##### Example of using @before() resolver
 
-    import {before, parameter, del, controller, ENUM_PARAM_IN} from "koa-joi-swagger-ts";
+    import {before, parameter, del, controller, ENUM_PARAM_IN} from "express-joi-swagger-ts";
 
     // ...somecodehere...
 
@@ -98,7 +98,7 @@ Parameters:
 
 ##### Example of using @after() resolver
 
-    import {after, parameter, del, controller, ENUM_PARAM_IN} from "koa-joi-swagger-ts";
+    import {after, parameter, del, controller, ENUM_PARAM_IN} from "express-joi-swagger-ts";
 
     // ...somecodehere...
 
@@ -115,7 +115,7 @@ Parameters:
 
 ## Example (_TypeScript_)
 
-    import {parameter, get, post, del, controller, definition, KJSRouter, summary, response, tag, ENUM_PARAM_IN} from "koa-joi-swagger-ts";
+    import {parameter, get, post, del, controller, definition, KJSRouter, summary, response, tag, ENUM_PARAM_IN} from "express-joi-swagger-ts";
     import * as joi from "joi";
     import * as fs from "fs";
     import {array, string} from "joi";
@@ -209,8 +209,8 @@ Parameters:
       swagger: '2.0',
       info: {
         description:
-          'This is a sample server Koa2 server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.',
-        title: 'Koa2 TypeScript Swagger',
+          'This is a sample server Express server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.',
+        title: 'Express TypeScript Swagger',
         version: '1.0.0',
         concat: {
           email: 'xxx@outlook.com'
@@ -262,4 +262,4 @@ Parameters:
 
 ## Project example
 
-You can quickly test @lxsbw/koa-joi-swagger-ts with the project example [koa-base-ts](https://github.com/Lxsbw/koa-base-ts).
+You can quickly test express-joi-swagger-ts with the project example [koa-base-ts](https://github.com/Lxsbw/koa-base-ts).
