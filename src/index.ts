@@ -157,7 +157,7 @@ const FIRST_SCHEMA = 0;
 export class KJSRouter {
   private readonly _swagger: ISwagger;
 
-  private _router: Router = Router();
+  public _router: Router = Router();
 
   private _swaggerFileName: string;
 
