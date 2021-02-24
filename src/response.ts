@@ -1,8 +1,8 @@
 import { ISchema, toJoi, toSwagger } from './ischema';
-import * as joi from 'joi';
 import { registerMethod, registerMiddleware } from './utils';
 import { HTTPStatusCodes, IPath, Tags } from './index';
 import { Request, Response } from 'express';
+import * as joi from 'joi';
 import * as _ from 'lodash';
 
 const RESPONSES: Map<

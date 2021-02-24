@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { Router } from 'express';
-const koaSwagger = require('koa2-swagger-ui');
+const expressSwagger = require('@lxsbw/express-swagger-ui');
 
 export * from './controller';
 
@@ -87,7 +87,6 @@ export const DEFAULT_SWAGGER: ISwagger = {
       type: 'apiKey',
       in: 'header',
       name: 'Authorization'
-      // description: ''
     }
   }
 };
@@ -243,23 +242,13 @@ export class KJSRouter {
   public loadSwaggerUI(url: string): void {
     this._router.get(
       url,
-      koaSwagger({
+      expressSwagger({
         routePrefix: false,
         swaggerOptions: {
           url: this._swaggerFileName
         }
       })
     );
-    // const swaggerDocument = require(this.getSwaggerFile());
-    // this._router.use(
-    //   url,
-    //   swaggerUi.serve,
-    //   swaggerUi.setup(swaggerDocument, {
-    //     swaggerOptions: {
-    //       url: this._swaggerFileName
-    //     }
-    //   })
-    // );
   }
 
   public getRouter(): Router {

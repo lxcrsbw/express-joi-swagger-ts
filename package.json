@@ -22,16 +22,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:lxcrsbw/koa-joi-swagger-ts.git"
+    "url": "git@github.com:lxcrsbw/express-joi-swagger-ts.git"
   },
   "author": "lxsbw",
   "license": "ISC",
   "dependencies": {
+    "@lxsbw/express-swagger-ui": "^1.0.0",
     "express": "^4.16.1",
     "joi": "^14.3.1",
     "joi-to-swagger": "^3.2.0",
     "lodash": "^4.17.14",
-    "koa2-swagger-ui": "^2.14.1",
     "tslint-consistent-codestyle": "^1.15.1"
   },
   "devDependencies": {
