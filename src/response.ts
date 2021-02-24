@@ -43,10 +43,10 @@ export const response = (
     key,
     async (ctx: Request, res: Response, next: Function): Promise<void> => {
       await next();
-      if (RESPONSES.get(target.constructor).get(key).has(ctx.statusCode)) {
+      if (RESPONSES.get(target.constructor).get(key).has(res.statusCode)) {
         const { error, value } = joi.validate(
           ctx.body,
-          RESPONSES.get(target.constructor).get(key).get(ctx.statusCode)
+          RESPONSES.get(target.constructor).get(key).get(res.statusCode)
         );
         if (error) {
           // ctx.body = {
