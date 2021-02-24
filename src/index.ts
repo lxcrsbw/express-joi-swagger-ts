@@ -197,12 +197,7 @@ export class KJSRouter {
               ...wares.concat(
                 decorator
                   ? async (ctx, res, next) => {
-                      await decorator(
-                        v.handle,
-                        /*ctx*/ res,
-                        next,
-                        router.summary
-                      );
+                      await decorator(v.handle, ctx, next, router.summary);
                     }
                   : v.handle
               )
