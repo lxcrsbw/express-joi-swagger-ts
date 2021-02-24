@@ -196,8 +196,13 @@ export class KJSRouter {
               ),
               ...wares.concat(
                 decorator
-                  ? async (ctx, next) => {
-                      await decorator(v.handle, ctx, next, router.summary);
+                  ? async (ctx, res, next) => {
+                      await decorator(
+                        v.handle,
+                        /*ctx*/ res,
+                        next,
+                        router.summary
+                      );
                     }
                   : v.handle
               )
@@ -231,8 +236,8 @@ export class KJSRouter {
   public setSwaggerFile(fileName: string): void {
     this._swaggerFileName = this._swagger.basePath + '/' + fileName;
     this._router.get(this._swaggerFileName, (req, res, next) => {
-      req.body = JSON.stringify(this._swagger);
-      // res.send(JSON.stringify(this._swagger));
+      // req.body = JSON.stringify(this._swagger);
+      res.send(JSON.stringify(this._swagger));
     });
   }
 
