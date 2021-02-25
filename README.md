@@ -1,6 +1,9 @@
-## express-joi-swagger-ts
+# express-joi-swagger-ts [![NPM version][npm-image]][npm-url]
 
-### How to use
+[npm-image]: https://img.shields.io/npm/v/express-joi-swagger-ts.svg
+[npm-url]: https://npmjs.org/package/express-joi-swagger-ts
+
+## How to use
 
     npm install express-joi-swagger-ts --save
 
@@ -250,7 +253,7 @@ Parameters:
     // console.log(router.getRouter());
 
     const app = express();
-    app.use(router.SwaggerRouter);
+    app.use(router.getRouter());
     app.listen(3002);
 
 ## Project example
