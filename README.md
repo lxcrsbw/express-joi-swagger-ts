@@ -1,4 +1,4 @@
-## Express-Joi-Swagger-TS
+## express-joi-swagger-ts
 
 ### How to use
 
@@ -16,14 +16,14 @@ Each controller can use 5 predefined rest methods `GET, PUT, POST, PATCH, DELETE
     class UserController extends BaseController {
         @put("/{userId}")
         @parameter("userId", joi.string().min(2).description("userId"), ENUM_PARAM_IN.path)
-        addSomeUser(ctx) {
-            ctx.body = "cant add user";
+        addSomeUser(req, res) {
+            res.send("cant add user");
         }
 
         @del("/{userId}")
         @parameter("userId", joi.string().min(2).description("userId"), ENUM_PARAM_IN.path)
-        deleteSomeUser(ctx) {
-            ctx.body = "user not found";
+        deleteSomeUser(req, res) {
+            res.send("user not found");
         }
     }
 
@@ -78,10 +78,10 @@ Parameters:
     class UserController extends BaseController {
         @del("/{userId}")
         @parameter("userId", joi.string().min(2).description("userId"), ENUM_PARAM_IN.path)
-        @before( (ctx) => { console.log("first resolver") } )
-        @before( (ctx) => { console.log("second resolver") }, (ctx) => { console.log("third resolver") } )
-        deleteSomeUser(ctx) {
-            ctx.body = "user not found";
+        @before( (req) => { console.log("first resolver") } )
+        @before( (req) => { console.log("second resolver") }, (req) => { console.log("third resolver") } )
+        deleteSomeUser(req, res) {
+            res.send("user not found");
         }
     }
 
@@ -106,20 +106,20 @@ Parameters:
     class UserController extends BaseController {
         @del("/{userId}")
         @parameter("userId", joi.string().min(2).description("userId"), ENUM_PARAM_IN.path)
-        @after( (ctx) => { console.log("called THIRD afetr method") } )
-        @after( (ctx) => { console.log("called FIRST after method") }, (ctx) => { console.log("called SECOND after method") } )
-        deleteSomeUser(ctx) {
-            ctx.body = "user not found";
+        @after( (req) => { console.log("called THIRD afetr method") } )
+        @after( (req) => { console.log("called FIRST after method") }, (req) => { console.log("called SECOND after method") } )
+        deleteSomeUser(req, res) {
+            res.send("user not found");
         }
     }
 
 ## Example (_TypeScript_)
 
-    import {parameter, get, post, del, controller, definition, KJSRouter, summary, response, tag, ENUM_PARAM_IN} from "express-joi-swagger-ts";
+    import {parameter, get, post, del, controller, definition, ExpressSwaggerRouter, summary, response, tag, ENUM_PARAM_IN} from "express-joi-swagger-ts";
     import * as joi from "joi";
     import * as fs from "fs";
     import {array, string} from "joi";
-    import * as koa from "koa";
+    import * as express from 'express';
 
     @definition("User", "User Entity")
     class UserSchema {
@@ -137,10 +137,10 @@ Parameters:
     /**
      * This method will be called by middleware instead of controller
      */
-    const baseControllerFunction = async (controller, ctx, next, summary): Promise<void> => {
-        console.log(`${ctx.request.method} ${ctx.request.url}`);
+    const baseControllerFunction = async (controller, req, next, summary): Promise<void> => {
+        console.log(`${req.method} ${req.url}`);
         try {
-            await controller(ctx);
+            await controller(req);
         } catch (e) {
             console.log(e, `Error while executing "${summary}"`);
         }
@@ -157,21 +157,21 @@ Parameters:
 
         @get("/")
         @parameter("userId", joi.string().required(), ENUM_PARAM_IN.query)
-        doGet(ctx) {
-            ctx.body = Date.now();
+        doGet(req, res) {
+            res.send(Date.now());
         }
 
         @get("/{userId}")
         @parameter("userId", joi.number().min(2).description("userId"), ENUM_PARAM_IN.path)
         @response(200, {$ref: UserSchema})
-        getUser(ctx) {
-            ctx.body = {userName: ctx.params.userId.toString(), userPass: Date.now().toString()};
+        getUser(req, res) {
+            res.send({userName: req.params.userId.toString(), userPass: Date.now().toString()});
         }
 
         @post("/upload")
         @parameter("file1", {type: "file"}, ENUM_PARAM_IN.formData)
-        doUpload(ctx) {
-            ctx.body = { fileObj: ctx.body.file1};
+        doUpload(req, res) {
+            res.send({ fileObj: req.body.file1});
         }
 
         @post("/")
@@ -205,7 +205,7 @@ Parameters:
         }
     }
 
-    const router = new KJSRouter({
+    const router = new ExpressSwaggerRouter({
       swagger: '2.0',
       info: {
         description:
@@ -245,21 +245,14 @@ Parameters:
     router.loadController(AdminController);
 
     router.setSwaggerFile("swagger.json");
-
     router.loadSwaggerUI("/");
-
     fs.writeFileSync("./swagger.json", JSON.stringify(router.swagger));
-
     // console.log(router.getRouter());
 
-    const app = new koa();
-
-    app.use(router.getRouter().routes());
-
-    app.use(router.getRouter().allowedMethods());
-
+    const app = express();
+    app.use(router.SwaggerRouter);
     app.listen(3002);
 
 ## Project example
 
-You can quickly test express-joi-swagger-ts with the project example [koa-base-ts](https://github.com/Lxsbw/koa-base-ts).
+You can quickly test express-joi-swagger-ts with the project example [express-base-ts](https://github.com/Lxsbw/express-base-ts).

@@ -1,25 +1,16 @@
 import * as _ from 'lodash';
 import { Router } from 'express';
-const expressSwagger = require('@lxsbw/express-swagger-ui');
+import { expressSwagger } from '@lxsbw/express-swagger-ui';
 
 export * from './controller';
-
 export * from './definition';
-
 export * from './description';
-
 export * from './ischema';
-
 export * from './method';
-
 export * from './parameter';
-
 export * from './resolvers';
-
 export * from './response';
-
 export * from './summary';
-
 export * from './tag';
 
 export interface ISwagger {
@@ -152,10 +143,10 @@ export const DEFAULT_PATH: IPath = {
 
 const FIRST_SCHEMA = 0;
 
-export class KJSRouter {
+export class ExpressSwaggerRouter {
   private readonly _swagger: ISwagger;
 
-  public _router: Router = Router();
+  private _router: Router = Router();
 
   private _swaggerFileName: string;
 

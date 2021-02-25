@@ -27,7 +27,7 @@
   "author": "lxsbw",
   "license": "ISC",
   "dependencies": {
-    "@lxsbw/express-swagger-ui": "^1.0.0",
+    "@lxsbw/express-swagger-ui": "^1.0.1",
     "express": "^4.16.1",
     "joi": "^14.3.1",
     "joi-to-swagger": "^3.2.0",

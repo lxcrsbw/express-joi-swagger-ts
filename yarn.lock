@@ -384,10 +384,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@lxsbw/express-swagger-ui@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npm.taobao.org/@lxsbw/express-swagger-ui/download/@lxsbw/express-swagger-ui-1.0.0.tgz#8515b5a1b342649840f0a9b9cb309302f027bf00"
-  integrity sha1-hRW1obNCZJhA8Km5yzCTAvAnvwA=
+"@lxsbw/express-swagger-ui@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/@lxsbw/express-swagger-ui/download/@lxsbw/express-swagger-ui-1.0.1.tgz#14ab73952f0da6e16e99288bc88b4e458b7a497b"
+  integrity sha1-FKtzlS8NpuFumSiLyItORYt6SXs=
   dependencies:
     "@types/express" "^4.17.9"
     handlebars "^4.1.2"
