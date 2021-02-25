@@ -80,6 +80,7 @@ export const parameter = (
             break;
           case ENUM_PARAM_IN.formData:
             tempSchema.formData[schemaName] = schemaObject.schema;
+            // TODO: 原来是req.files，临时处理，需要改进
             if (req.params && req.params[schemaName]) {
               body = Object.assign(body, {
                 [schemaName]: req.params[schemaName]
