@@ -63,10 +63,10 @@ export const parameter = (
   registerMiddleware(
     target,
     key,
-    async (ctx: Request, res: Response, next: Function) => {
+    async (req: Request, res: Response, next: Function) => {
       const schemas = PARAMETERS.get(target.constructor).get(key);
       const tempSchema = { params: {}, body: {}, query: {}, formData: {} };
-      let body = ctx.body;
+      let body = req.body;
       for (const [schemaName, schemaObject] of schemas) {
         switch (schemaObject.in) {
           case ENUM_PARAM_IN.query:
@@ -80,9 +80,9 @@ export const parameter = (
             break;
           case ENUM_PARAM_IN.formData:
             tempSchema.formData[schemaName] = schemaObject.schema;
-            if (ctx.params && ctx.params[schemaName]) {
+            if (req.params && req.params[schemaName]) {
               body = Object.assign(body, {
-                [schemaName]: ctx.params[schemaName]
+                [schemaName]: req.params[schemaName]
               });
             }
             break;
@@ -90,7 +90,7 @@ export const parameter = (
       }
 
       let formData = {};
-      if (ctx.is(['multipart/form-data'])) {
+      if (req.is(['multipart/form-data'])) {
         formData = body;
         body = {};
       }
@@ -98,8 +98,8 @@ export const parameter = (
         {
           body,
           formData,
-          params: ctx.params,
-          query: ctx.query
+          params: req.params,
+          query: req.query
         },
         tempSchema
       );
@@ -111,10 +111,10 @@ export const parameter = (
           })
         );
       }
-      ctx.params = value.params;
-      ctx.body =
-        (ctx.is(['multipart/form-data']) && value.formData) || value.body;
-      ctx.query = value.query;
+      req.params = value.params;
+      req.body =
+        (req.is(['multipart/form-data']) && value.formData) || value.body;
+      req.query = value.query;
       return await next();
     }
   );

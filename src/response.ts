@@ -41,11 +41,11 @@ export const response = (
   registerMiddleware(
     target,
     key,
-    async (ctx: Request, res: Response, next: Function): Promise<void> => {
+    async (req: Request, res: Response, next: Function): Promise<void> => {
       await next();
       if (RESPONSES.get(target.constructor).get(key).has(res.statusCode)) {
         const { error, value } = joi.validate(
-          ctx.body,
+          req.body,
           RESPONSES.get(target.constructor).get(key).get(res.statusCode)
         );
         if (error) {

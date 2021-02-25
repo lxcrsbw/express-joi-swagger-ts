@@ -187,7 +187,7 @@ export class ExpressSwaggerRouter {
               ),
               ...wares.concat(
                 decorator
-                  ? async (ctx, res, next) => {
+                  ? async (ctx, next) => {
                       await decorator(v.handle, ctx, next, router.summary);
                     }
                   : v.handle
