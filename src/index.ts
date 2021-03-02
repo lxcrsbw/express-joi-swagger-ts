@@ -238,7 +238,11 @@ export class ExpressSwaggerRouter {
         routePrefix: false,
         swaggerOptions: {
           url: this._swaggerFileName
-        }
+        },
+        favicon16:
+          '/node_modules/@lxsbw/express-swagger-ui/dist/favicon-16x16.png',
+        favicon32:
+          '/node_modules/@lxsbw/express-swagger-ui/dist/favicon-32x32.png'
       })
     );
   }
