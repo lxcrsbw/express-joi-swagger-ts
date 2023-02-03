@@ -259,3 +259,7 @@ Parameters:
 ## Project example
 
 You can quickly test express-joi-swagger-ts with the project example [express-base-ts](https://github.com/Lxsbw/express-base-ts).
+
+## Remarks
+
+提供一个简洁的Express Swagger TS版本，像中间件一样使用，少干扰Express
